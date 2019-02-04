@@ -18,7 +18,7 @@ public class Attempt {
     public Attempt(String user) {
         this.user = user;
         this.attempts = new AtomicInteger(0);
-        this.attemptAfter = Instant.now();
+        this.attemptAfter = Instant.EPOCH;
     }
 
     public String getUser() {
