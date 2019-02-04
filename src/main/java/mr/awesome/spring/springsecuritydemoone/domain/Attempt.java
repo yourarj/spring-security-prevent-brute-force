@@ -34,9 +34,7 @@ public class Attempt {
     }
 
     public void attemptFailed() {
-        if (ALLOWED_FAILED_ATTEMPTS < attempts.incrementAndGet()) {
-            if(Instant.now().isAfter(attemptAfter))
-                attempts.set(0);
+        if (ALLOWED_FAILED_ATTEMPTS <= attempts.incrementAndGet() && attempts.get() % ALLOWED_FAILED_ATTEMPTS==0) {
             long fiboTimeInMinutes = Attempt.getFiboTimeInMinutes(attempts.get() - ALLOWED_FAILED_ATTEMPTS);
             attemptAfter = Instant.now().plus(fiboTimeInMinutes, ChronoUnit.MINUTES);
             LOGGER.warn("{} needs to wait till {} ( in {} minutes) for next attempt!", user, attemptAfter, fiboTimeInMinutes);
