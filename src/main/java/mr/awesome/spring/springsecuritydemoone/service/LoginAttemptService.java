@@ -7,4 +7,5 @@ public interface LoginAttemptService {
     Instant cantAttemptAfter(String user);
     void registerFailedAttempt(String user);
     void clearHistory(String name);
+    void saveForLater(String name, LoginAttemptServiceImpl.ChainNAsyncContext chainNAsyncContext);
 }
