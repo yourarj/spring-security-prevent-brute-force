@@ -1,5 +1,6 @@
 package mr.awesome.spring.springsecuritydemoone.service;
 
+import javax.servlet.AsyncContext;
 import java.time.Instant;
 
 public interface LoginAttemptService {
@@ -7,5 +8,5 @@ public interface LoginAttemptService {
     Instant cantAttemptAfter(String user);
     void registerFailedAttempt(String user);
     void clearHistory(String name);
-    void saveForLater(String name, LoginAttemptServiceImpl.ChainNAsyncContext chainNAsyncContext);
+    void addToWaitingQueue(String name, AsyncContext chainNAsyncContext);
 }
